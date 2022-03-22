@@ -17,6 +17,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
   var firstnameController= TextEditingController();
   var secondnameController= TextEditingController();
   var addressController= TextEditingController();
+  var streetController= TextEditingController();
+  var areaController= TextEditingController();
   var emailController= TextEditingController();
   var passwordController= TextEditingController();
   var confirmPasswordController= TextEditingController();
@@ -25,6 +27,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   String value= '';
   final formKey = GlobalKey<FormState>();
+  List items=['', ''];
+  String ? valueChoose;
+
 
   @override
   Widget build(BuildContext context) {
@@ -48,10 +53,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                 ),
 
-                SizedBox(
-                  height: 20.0,
-                ),
-
                 Text(
                     'Create your account',
                     style:TextStyle( fontWeight: FontWeight.bold,fontSize: 23.0,)
@@ -64,64 +65,63 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children:[
-                    Container(
-                      width: 175,
-                      child: TextFormField(
-                        controller:firstnameController,
+                  Expanded(
+                    child: TextFormField(
+                          controller:firstnameController,
 
-                        decoration: InputDecoration(
-                          fillColor: Colors.white,
-                          filled: true,
-                          hintText: 'First Name',
-                          prefixIcon: Icon(Icons.drive_file_rename_outline,),
-                          enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.black26,),
-                              borderRadius: BorderRadius.circular(20)
+                          decoration: InputDecoration(
+                            fillColor: Colors.white,
+                            filled: true,
+                            hintText: 'First Name',
+                            prefixIcon: Icon(Icons.drive_file_rename_outline,),
+                            enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.black26,),
+                                borderRadius: BorderRadius.circular(20)
+                            ),
+                            focusedBorder:  OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.deepOrange,width: 2.0),
+                                borderRadius: BorderRadius.circular(20)
+                            ),
                           ),
-                          focusedBorder:  OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.deepOrange,width: 2.0),
-                              borderRadius: BorderRadius.circular(20)
-                          ),
+                          validator: (value) {
+                            if(value!.isEmpty) {
+                              return 'First Name must not be empty';
+                            }
+                            return null;
+                          },
                         ),
-                        validator: (value) {
-                          if(value!.isEmpty) {
-                            return 'First Name must not be empty';
-                          }
-                          return null;
-                        },
-                      ),
-                    ),
+                  ),
+
 
                     SizedBox(
                       width:10.0,
                     ),
 
-                    Container(
-                      width: 185,
-                      child: TextFormField(
-                        controller:secondnameController,
-                        decoration: InputDecoration(
-                          fillColor: Colors.white,
-                          filled: true,
-                          hintText: 'Second Name',
-                          prefixIcon: Icon(Icons.drive_file_rename_outline,),
-                          enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.black26,),
-                              borderRadius: BorderRadius.circular(20)
+               Expanded(
+                    child: TextFormField(
+                          controller:secondnameController,
+                          decoration: InputDecoration(
+                            fillColor: Colors.white,
+                            filled: true,
+                            hintText: 'Second Name',
+                            prefixIcon: Icon(Icons.drive_file_rename_outline,),
+                            enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.black26,),
+                                borderRadius: BorderRadius.circular(20)
+                            ),
+                            focusedBorder:  OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.deepOrange,width: 2.0),
+                                borderRadius: BorderRadius.circular(20)
+                            ),
                           ),
-                          focusedBorder:  OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.deepOrange,width: 2.0),
-                              borderRadius: BorderRadius.circular(20)
-                          ),
+                          validator: (value) {
+                            if(value!.isEmpty) {
+                              return 'Second Name must not be empty';
+                            }
+                            return null;
+                          },
                         ),
-                        validator: (value) {
-                          if(value!.isEmpty) {
-                            return 'Second Name must not be empty';
-                          }
-                          return null;
-                        },
-                      ),
-                    ),
+                ),
                   ],
                 ),
 
@@ -231,31 +231,101 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   height: 20.0,
                 ),
 
-                TextFormField(
-                  controller:addressController,
-                  decoration: InputDecoration(
-                    fillColor: Colors.white,
-                    filled: true,
-                    hintText: 'Address',
-                    prefixIcon: Icon(Icons.home,),
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.black26,),
-                        borderRadius: BorderRadius.circular(20)
-                    ),
-                    focusedBorder:  OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.deepOrange,width: 2.0),
-                        borderRadius: BorderRadius.circular(20)
-                    ),
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
 
-                  validator:(value) {
-                    if(value!.isEmpty){
-                      return 'The Address Must not be empty';}
-                    else{
-                      return null;
-                    }
-                  },
+                    Expanded(
+                      child: Container(
+                        padding:EdgeInsetsDirectional.only(start: 10.0) ,
+                        decoration:BoxDecoration(
+                          border:Border.all(color:Colors.black26),
+                          borderRadius:BorderRadius.circular(20),
+                        ),
+                        child: DropdownButton(
+                          isExpanded: true,
+                          dropdownColor: Colors.white,
+                          underline: SizedBox(),
+                          value:valueChoose,
+                          hint: Text('City'),
+                          onChanged:(newValue) {
+                            setState(() {
+                              valueChoose= newValue as String?;
+                            });
+                          },
+                          items: items.map((valueItem) {
+                            return DropdownMenuItem(
+                              value:valueItem,
+                              child: Text(valueItem),
+                            );
+                          }).toList(),
+                        ),
+                      ),
+                    ),
+
+                    SizedBox(
+                      width: 5.0,
+                    ),
+
+                    Expanded(
+                      child: TextFormField(
+                        controller:areaController,
+                        decoration: InputDecoration(
+                          fillColor: Colors.white,
+                          filled: true,
+                          hintText: 'Area',
+                          prefixIcon: Icon(Icons.area_chart_outlined,),
+                          enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.black26,),
+                              borderRadius: BorderRadius.circular(20)
+                          ),
+                          focusedBorder:  OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.deepOrange,width: 2.0),
+                              borderRadius: BorderRadius.circular(20)
+                          ),
+                        ),
+
+                        validator:(value) {
+                          if(value!.isEmpty){
+                            return 'The Area Must not be empty';}
+                          else{
+                            return null;
+                          }
+                        },
+                      ),
+                    ),
+                ],
                 ),
+
+                SizedBox(
+                  height: 20.0,
+                ),
+
+        TextFormField(
+              controller:streetController,
+              decoration: InputDecoration(
+                fillColor: Colors.white,
+                filled: true,
+                hintText: 'Street',
+                prefixIcon: Icon(Icons.home,),
+                enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black26,),
+                    borderRadius: BorderRadius.circular(20)
+                ),
+                focusedBorder:  OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.deepOrange,width: 2.0),
+                    borderRadius: BorderRadius.circular(20)
+                ),
+              ),
+
+              validator:(value) {
+                if(value!.isEmpty){
+                  return 'The Address Must not be empty';}
+                else{
+                  return null;
+                }
+              },
+            ),
 
                 SizedBox(
                   height: 25.0,

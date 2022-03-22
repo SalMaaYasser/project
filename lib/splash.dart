@@ -23,13 +23,13 @@ class _SplashscreenState extends State<Splashscreen> {
     Navigator.pushAndRemoveUntil(context,MaterialPageRoute(builder: (context)=> GetStarted()), (route) => false);
   }
 
-
   Widget build(BuildContext context) {
     return Scaffold(
       body:Center(
         child: Image(image: AssetImage('assets/images/logo black.png',
         ),
-
+          width: 125,
+          height: 125,
         ),
       ),
     );

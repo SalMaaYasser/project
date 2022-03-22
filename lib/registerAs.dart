@@ -1,14 +1,8 @@
-
-import 'dart:async';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:untitled/loginSeller.dart';
 import 'package:untitled/register.dart';
-
+import 'package:untitled/registerSeller.dart';
 import 'getstarted.dart';
 
 class registerAs extends StatefulWidget {
@@ -19,6 +13,8 @@ class registerAs extends StatefulWidget {
 }
 
 class _registerAsState extends State<registerAs> {
+  bool isCustomer=true;
+
   @override
 
   Widget build(BuildContext context) {
@@ -36,117 +32,123 @@ class _registerAsState extends State<registerAs> {
         ),
       ),
 
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Center(
-              child: Image(image: AssetImage('assets/images/logo black.png',
-              ),
-                width: 125,
-                height: 125,
+      body: Container(
+        color: Colors.white,
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Center(
+                child: Image(image: AssetImage('assets/images/logo black.png',
+                ),
+                  width: 125,
+                  height: 125,
+                ),
               ),
             ),
-          ),
 
-          SizedBox(
-            height:110,
-          ),
+            SizedBox(
+              height:60.0,
+            ),
 
-          Column(
-            children: [
-              Text('Register as',
-                style:TextStyle(fontWeight: FontWeight.bold,
-                    fontSize: 20.0),
-              ),
-
-              SizedBox(
-                height:20,
-              ),
-
-              Padding(
-                padding: const EdgeInsetsDirectional.only(start: 130),
-                child: Row(
-                  children:[
-                    MaterialButton(
-                      height: 55,
-                      minWidth: 120,
-                      elevation:5.0,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(20)),
-                      onPressed: () {
-                        Navigator.push(context,MaterialPageRoute(builder: (context)=> RegisterScreen() ));
-
-                      },
-                      child: Text(
-                        "Customer",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                        ),
-                      ),
-                      color: Colors.white,
-                    ),
-
-                    SizedBox(
-                      width: 20.0,
-                    ),
-
-                    MaterialButton(
-                      height: 55,
-                      minWidth: 120,
-                      elevation:5.0,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(20)),
-                      onPressed: () {},
-                      child: Text(
-                        "Seller",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                        ),
-                      ),
-                      color: Colors.white,
-                    ),
-                  ],
-                ),
-              ),
-
-
-              SizedBox(
-                height:60,
-              ),
-
-              MaterialButton(
-                height: 55,
-                minWidth: 280,
-                elevation:5.0,
-                shape: RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(20)),
-                onPressed: () {
-                  // Navigator.push(context,MaterialPageRoute(builder: (context)=> ));
-
-                },
-                child: Text(
-                  "Continue",
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
+            Column(
+              children: [
+                Center(
+                  child: Text('Register as',
+                    style:TextStyle(fontWeight: FontWeight.bold,
+                        fontSize: 25.0),
                   ),
                 ),
-                color: Colors.black,
-              ),
 
-            ],
-          ),
+                SizedBox(
+                  height:80,
+                ),
+
+                 Row(
+                   mainAxisAlignment: MainAxisAlignment.center,
+                    children:[
+                      Container(
+                        width: 110.0,
+                        height: 40.0,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15.0,),
+                          color: isCustomer ? Colors.black : Colors.white,
+                        ),
+                          child:GestureDetector(
+                              onTap: ( () {
+                                setState(() {
+                                  isCustomer= true;
+                                });
+                              }),
+                          child: Text('Customer',
+                          style: TextStyle(color: isCustomer? Colors.white : Colors.black,
+                            fontWeight: FontWeight.bold,fontSize: 20.0,),),
+                          ),
+                      ),
+
+
+                      SizedBox(
+                        width: 20.0,
+                      ),
+
+                      Container(
+                       width: 80.0,
+                        height: 40.0,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15.0,),
+                          color: isCustomer ? Colors.white : Colors.black,
+                        ),
+
+                        child:GestureDetector(
+                          onTap: ( () {
+                            setState(() {
+                              isCustomer= false;
+                            });
+                          }),
+                          child: Text('Seller',
+                            style: TextStyle(color: isCustomer? Colors.black : Colors.white,
+                            fontWeight: FontWeight.bold,fontSize: 20.0,),),
+                        ),
+                      ),
+
+                    ],
+                  ),
+
+
+                SizedBox(
+                  height:80,
+                ),
+
+                MaterialButton(
+                  height: 55,
+                  minWidth: 280,
+                  elevation:5.0,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(20)),
+                  onPressed: () {
+   isCustomer ? Navigator.push(context,MaterialPageRoute(builder: (context)=> RegisterScreen())) : Navigator.push(context,MaterialPageRoute(builder: (context)=> registerSeller()));
+                  },
+                  child: Text(
+                    "Continue",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                  color: Colors.black,
+                ),
+
+              ],
+            ),
 
 
 
 
-        ],
+          ],
+        ),
       ),
     );
   }

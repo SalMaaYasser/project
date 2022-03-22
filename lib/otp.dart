@@ -1,6 +1,8 @@
 
 import 'package:flutter/material.dart';
 
+import 'birthofdate.dart';
+
 class Otp extends StatefulWidget {
   const Otp({ Key? key}) : super(key: key);
 
@@ -24,117 +26,118 @@ class _OtpState extends State<Otp> {
         ),
       ),
 
-      body: SingleChildScrollView(
+      body: Container(
+        color: Colors.white,
         child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 24, horizontal: 32),
-          child: Column(
-            children: [
-              Container(
-                width: 125,
-                height: 125,
-                child:  Image(image: AssetImage('assets/images/logo black.png',
-                ),
-                ),
-              ),
-
-              SizedBox(
-                height: 24,
-              ),
-              Text(
-                'Verification',
-                style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Text(
-                "We sent an SMS code",
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black38,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              SizedBox(
-                height: 28,
-              ),
-              Container(
-                padding: EdgeInsetsDirectional.only(top: 28.0, bottom: 28.0),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        _textFieldOTP(first: true, last: false),
-                        _textFieldOTP(first: false, last: false),
-                        _textFieldOTP(first: false, last: false),
-                        _textFieldOTP(first: false, last: true),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 50,
-                    ),
-                    SizedBox(
-                      child: MaterialButton(
-                        height: 55,
-                        minWidth: 240,
-                        elevation:5.0,
-                        onPressed: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(builder: (context) => Otp()),
-                          );
-                        },
-                        shape: RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(20),
-                        ),
-                        child: Text(
-                          'Verify',
-                          style:
-                          TextStyle(fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
-                        ),
-                        color: Colors.black,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 18,
-              ),
-              Text(
-                "Didn't you receive any code?",
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black38,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              SizedBox(
-                height: 18,
-              ),
-              TextButton(onPressed: () {},
-                child: Text("Resend",
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
+            padding: EdgeInsets.symmetric(vertical: 24, horizontal: 32),
+            child: Column(
+              children: [
+                Container(
+                  width: 125,
+                  height: 125,
+                  child:  Image(image: AssetImage('assets/images/logo black.png',
+                  ),
                   ),
                 ),
-              ),
-            ],
+
+                SizedBox(
+                  height: 24,
+                ),
+                Text(
+                  'Verification',
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  "We sent an SMS code",
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black38,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(
+                  height: 28,
+                ),
+                Container(
+                  padding: EdgeInsetsDirectional.only(top: 28.0, bottom: 28.0),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          _textFieldOTP(first: true, last: false),
+                          _textFieldOTP(first: false, last: false),
+                          _textFieldOTP(first: false, last: false),
+                          _textFieldOTP(first: false, last: true),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 50,
+                      ),
+                      SizedBox(
+                        child: MaterialButton(
+                          height: 55,
+                          minWidth: 240,
+                          elevation:5.0,
+                          onPressed: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(builder: (context) => birthdate()),
+                            );
+                          },
+                          shape: RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(20),
+                          ),
+                          child: Text(
+                            'Verify',
+                            style:
+                            TextStyle(fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
+                          color: Colors.black,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 18,
+                ),
+                Text(
+                  "Didn't you receive any code?",
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black38,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(
+                  height: 18,
+                ),
+                TextButton(onPressed: () {},
+                  child: Text("Resend",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
 
       ),
     );

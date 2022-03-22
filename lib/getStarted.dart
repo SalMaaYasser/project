@@ -19,80 +19,82 @@ class _GetStartedState extends State<GetStarted> {
       ),
 
       body:
-      Column(
-        children:[
-          Center(
-            child: Image(image: AssetImage('assets/images/logo black.png',
-            ),
-              width: 125,
-              height: 125,
-            ),
-          ),
+      Container(
+        color: Colors.white,
+        child:
+            Column(
+              children:[
+                Center(
+                child: Image(image: AssetImage('assets/images/logo black.png',
+                ),
+                  width: 125,
+                  height: 125,
+                ),
+              ),
 
-          SizedBox(
-            height: 230,
-          ),
+         SizedBox(
+           height: 200,
+         ),
 
-          Column(
-            children:[
-              MaterialButton(
-                elevation:5.0,
-                shape: RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(20)),
-                onPressed: () {
-                  Navigator.push(context,MaterialPageRoute(builder: (context)=> registerAs()));
-                },
-                child: Container(
-                  height: 50,
-                  width: 320,
-                  child: Row(
+            Container(
+              width: double.infinity,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "Get Started",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                    children:[
+                       MaterialButton(
+                         minWidth: double.infinity,
+                          height: 45,
+                          elevation:5.0,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: new BorderRadius.circular(20)),
+                          onPressed: () {
+                            Navigator.push(context,MaterialPageRoute(builder: (context)=> registerAs()));
+                          },
+                          child: Container(
+                            child:
+                                Text(
+                                  "Get Started",
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                          ),
+                          color: Colors.black,
                         ),
+
+                      SizedBox(
+                        height: 20,
                       ),
-                      SizedBox(width: 5,),
-                      Icon(Icons.arrow_forward_ios_rounded,
-                          color: Colors.white,
-                          size:19.0),
+
+                      MaterialButton(
+                        minWidth: double.infinity,
+                        height: 45,
+                        elevation:5.0,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(20)),
+                        onPressed: () {
+                          Navigator.push(context,MaterialPageRoute(builder: (context)=> loginscren()));
+                        },
+                        child: Text(
+                          "Sign In",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                        ),
+                        color: Colors.white,
+                      ),
                     ],
                   ),
-                ),
-                color: Colors.black,
-              ),
-            ],
-          ),
-
-          SizedBox(
-            height: 20,
-          ),
-
-          MaterialButton(
-            height: 55,
-            minWidth: 340,
-            elevation:5.0,
-            shape: RoundedRectangleBorder(
-                borderRadius: new BorderRadius.circular(20)),
-            onPressed: () {
-              Navigator.push(context,MaterialPageRoute(builder: (context)=> loginscren()));
-            },
-            child: Text(
-              "Already have an account ?",
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
               ),
             ),
-            color: Colors.white,
-          ),
-
-        ],
+    ],
+    ),
       ),
     );
   }
